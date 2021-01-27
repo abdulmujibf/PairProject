@@ -1,0 +1,23 @@
+<%- include('./partials/nav') %>
+    <h1>Form Register</h1>
+    <form action="/register" method="post">
+
+        <label>Full Name</label><br>
+        <input type="text" name="fullname"><br>
+
+        <label>Username</label><br>
+        <input type="text" name="username"><br>
+
+        <label>Email</label><br>
+        <input type="text" name="email"><br>
+
+        <label>Phone Number</label><br>
+        <input type="text" name="phone_number" minlength="10" maxlength="13" required><br>
+
+        <label>password</label><br>
+        <input type="password" name="password" minlength="8" maxlength="10" required><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
