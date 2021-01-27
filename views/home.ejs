@@ -1,0 +1,22 @@
+<%- include('./partials/nav') %>
+    <h1>Welcome To Hotel App</h1>
+    <form action="/rooms" method="POST">
+        <label>Jumlah Kamar</label>
+        <select name="number_of_rooms">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <label>Check In</label>
+        <input type="date" name="checkIn" min="<%= minDate %>" max="<%= maxDate%>">
+
+        <label>Check Out</label>
+        <input type="date" name="checkOut" min="<%= minDate %>" max="<%= maxDate%>">
+
+        <input type="submit" value="Booking Room">
+    </form>
+</body>
+</html>
