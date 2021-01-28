@@ -26,11 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate: (instance, options) => {
         let salt = bcrypt.genSaltSync(10)
         let hash = bcrypt.hashSync(instance.password, salt)
+        instance.password = hash
       }
     }
-  },
-  {
-    sequelize,
+    ,sequelize,
     modelName: 'User',
   });
   return User;

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       GuestBooking.belongsTo(models.Guest, {foreignKey: 'GuestId'})
-      GuestBooking.hasMany(models.Room, {through: 'DetailBookings'})
+      GuestBooking.belongsToMany(models.Room, {through: 'DetailBookings'})
     }
   };
   GuestBooking.init({
