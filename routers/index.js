@@ -20,6 +20,6 @@ router.get('/logout', Controller.logOut)
 
 //room
 router.use('/rooms', room)
-router.use('/detailBooking', detailBoking)
+router.use('/booking', detailBoking)
 
 module.exports = router

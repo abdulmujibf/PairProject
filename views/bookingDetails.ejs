@@ -2,7 +2,22 @@
 <h1>Let's Started Booking For Your Room</h1>
 
 <div>
-        <!-- data room booking -->
+    <table border="1">
+        <thead>
+            <th>Rooms Type</th>
+            <th>Price</th>
+        </thead>
+        <tbody>
+            <% data.forEach(el => { %>
+               <% el.Rooms.forEach(element => { %>
+                <tr>
+                    <th><%= element.room_type %> </th>
+                    <th><%= element.price %> </th>
+                </tr> 
+               <% }) %>
+            <% }) %>
+        </tbody>
+    </table>
 </div>
 
 <div>
