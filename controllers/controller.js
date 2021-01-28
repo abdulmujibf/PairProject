@@ -103,7 +103,7 @@ class Controller {
 
     static booking(req, res){
         let {roomId} = req.params
-        let id = req.session.UserId
+        let UserId = req.session.UserId
         let guestId = req.session.GuestId
         let guestBooking = GuestBooking.findAll({where: {GuestId: guestId}})
         let room = Room.findByPk(roomId)
@@ -121,12 +121,32 @@ class Controller {
             let obj = {GuestBookingId, RoomId, totalPrice}
             return DetailBooking.create(obj)
         })
-        .then((data) => {
-            res.send(data)
+        .then(() => {
+            res.redirect('/booking/detail')
         })
         .catch((err) => {
             res.send(err)
         })
+    }
+
+    static detailBooking(req, res){
+        let UserId = req.session.UserId
+        let GuestId = req.session.GuestId
+        let guestBooking
+        GuestBooking.findAll({
+            where:{GuestId},
+            include: [Room]
+        })
+        .then(data => {
+            guestBooking = data
+            return DetailBooking.findAll()
+        })
+        .then(detail => {
+            //
+        })
+        .catch(err => {
+            res.send(err)
+        })   
     }
 }
 
