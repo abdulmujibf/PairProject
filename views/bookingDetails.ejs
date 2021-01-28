@@ -5,17 +5,17 @@
     <table border="1">
         <thead>
             <th>Rooms Type</th>
-            <th>Price</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Total Price</th>
         </thead>
         <tbody>
-            <% data.forEach(el => { %>
-               <% el.Rooms.forEach(element => { %>
-                <tr>
-                    <th><%= element.room_type %> </th>
-                    <th><%= element.price %> </th>
-                </tr> 
-               <% }) %>
-            <% }) %>
+            <tr>
+                <td><%= guestBooking.Rooms[0].room_type %> </td>
+                <td><%= guestBooking.checkIn.toLocaleDateString('fr-ca', { timeZone: 'UTC' }) %> </td>
+                <td><%= guestBooking.checkOut.toLocaleDateString('fr-ca', { timeZone: 'UTC' }) %> </td>
+                <td><%= detail.totalPrice %> </td>
+            </tr>
         </tbody>
     </table>
 </div>
