@@ -22,7 +22,9 @@ class Controller {
     }
 
     static registerPost(req, res){
-        console.log(req.body)
+        let {fullname, username, email, password, phone_number} = req.body
+        let newUser = {fullname, username, email, password, phone_number}
+        console.log(newUser)
     }
     
 }
