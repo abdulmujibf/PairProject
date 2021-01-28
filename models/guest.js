@@ -16,9 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Guest.init({
-    name: DataTypes.STRING,
-    phone_number: DataTypes.INTEGER,
-    address: DataTypes.STRING
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Guest',

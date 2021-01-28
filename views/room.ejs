@@ -1,4 +1,23 @@
 <%- include('./partials/nav') %>
     <h1>Rooms</h1>
+
+    <table border="1">
+        <thead>
+            <th>Room Number</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Book Now</th>
+        </thead>
+        <tbody>
+            <% room.forEach(el => { %>
+                <tr>
+                    <td><%= el.room_number %> </td>
+                    <td><%= el.room_type %> </td>
+                    <td><%= el.price %> </td>
+                    <td><button><a href="/detailBooking/<%= el.id %> ">Booking Room</a></button></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </body>
 </html>
