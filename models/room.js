@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Room.hasMany(models.GuestBooking, {through: 'DetailBookings'})
+      Room.belongsToMany(models.GuestBooking, {through: 'DetailBookings'})
     }
   };
   Room.init({
+    room_number: DataTypes.STRING,
     room_type: DataTypes.STRING,
     price: DataTypes.INTEGER
   }, {

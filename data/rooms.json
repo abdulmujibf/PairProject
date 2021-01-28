@@ -1,0 +1,47 @@
+[
+    {
+        "room_number" : "101",
+        "room_type" : "Standard",
+        "price" : 350000
+    },
+    {
+        "room_number" : "102",
+        "room_type" : "Standard",
+        "price" : 350000
+    },
+    {
+        "room_number" : "103",
+        "room_type" : "Standard",
+        "price" : 350000
+    },
+    {
+        "room_number" : "201",
+        "room_type" : "Superior",
+        "price" : 700000
+    },
+    {
+        "room_number" : "202",
+        "room_type" : "Superior",
+        "price" : 700000
+    },
+    {
+        "room_number" : "203",
+        "room_type" : "Superior",
+        "price" : 700000
+    },
+    {
+        "room_number" : "301",
+        "room_type" : "Deluxe",
+        "price" : 1000000
+    },
+    {
+        "room_number" : "302",
+        "room_type" : "Deluxe",
+        "price" : 1000000
+    },
+    {
+        "room_number" : "303",
+        "room_type" : "Deluxe",
+        "price" : 1000000
+    }
+]
