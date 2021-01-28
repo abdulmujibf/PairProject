@@ -1,6 +1,5 @@
 const { User, Guest, Room, GuestBooking, DetailBooking } = require('../models')
 const bcrypt = require('bcryptjs');
-const { use } = require('../routers');
 
 class Controller {
     static homePage(req, res){
@@ -26,19 +25,11 @@ class Controller {
     }
 
     static roomPost(req,res){
-        let UserId = req.session.UserId
         let id = req.session.UserId
+        let guestId = req.session.GuestId
         let dataBoking = req.body
-        let user
         let guest
-        User.findByPk(id)
-        .then((data) => {
-            user = data;
-            let newGuest = {
-                userId : user.id
-            }
-            return Guest.create(newGuest)
-        })
+        Guest.findByPk(guestId)
         .then((dataGuest) => {
             guest = dataGuest;
             let newDataGuestBooking = {
@@ -90,10 +81,14 @@ class Controller {
             let checkPass = bcrypt.compareSync(password, data.password)
             if(data.username && checkPass){
                 req.session.UserId = data.id
-                res.redirect('/')
+                return Guest.create({userId: data.id})
             }else{
-                res.redirect('/login/?alert=Username / password invalid')
+                res.redirect('/login/?alert=Username/passwordinvalid')
             }
+        })
+        .then((data) => {
+            req.session.GuestId = data.id
+            res.redirect('/')
         })
         .catch((err) => {
             res.send(err)
@@ -102,18 +97,36 @@ class Controller {
 
     static logOut(req,res) {
         delete req.session.UserId
+        delete req.session.GuestId
         res.redirect('/')
     }
 
     static booking(req, res){
-        let id = req.params.id
-        let room 
-        let guestBooking
-        Room.findAll()
-        .then((dataRoom) => {
-            res.send(dataRoom)
+        let {roomId} = req.params
+        let id = req.session.UserId
+        let guestId = req.session.GuestId
+        let guestBooking = GuestBooking.findAll({where: {GuestId: guestId}})
+        let room = Room.findByPk(roomId)
+        Promise.all([guestBooking, room])
+        .then((values) => {
+            let GuestBookingId = values[0][values[0].length-1].id
+            let RoomId = roomId
+            let totalHari = values[0][values[0].length-1].checkOut.getDate() - values[0][values[0].length-1].checkIn.getDate()
+            let totalPrice
+            if(totalHari === 0){
+                totalPrice = values[1].price
+            }else{
+                totalPrice = totalHari * values[1].price
+            }
+            let obj = {GuestBookingId, RoomId, totalPrice}
+            return DetailBooking.create(obj)
         })
-        res.send('masuk boooking details')
+        .then((data) => {
+            res.send(data)
+        })
+        .catch((err) => {
+            res.send(err)
+        })
     }
 }
 
