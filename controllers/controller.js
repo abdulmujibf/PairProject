@@ -58,7 +58,7 @@ class Controller {
         let newUser = {fullname, username, email, password, phone_number}
         User.create(newUser)
         .then(() => {
-            res.redirect('/')
+            res.redirect('/login')
         })
         .catch((err) => {
             res.send(err)
