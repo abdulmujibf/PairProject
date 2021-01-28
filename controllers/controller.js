@@ -133,16 +133,14 @@ class Controller {
         let UserId = req.session.UserId
         let GuestId = req.session.GuestId
         let guestBooking
+        let room
         GuestBooking.findAll({
             where:{GuestId},
             include: [Room]
         })
         .then(data => {
             guestBooking = data
-            return DetailBooking.findAll()
-        })
-        .then(detail => {
-            //
+            res.render('bookingDetails', {data, UserId})
         })
         .catch(err => {
             res.send(err)

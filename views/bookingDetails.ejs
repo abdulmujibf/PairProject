@@ -5,16 +5,24 @@
     <table border="1">
         <thead>
             <th>Rooms Type</th>
+            <th>Room Number</th>
             <th>Price</th>
+            <th>Jumlah Kamar</th>
+            <th>Check In</th>
+            <th>Check Out</th>
         </thead>
         <tbody>
-            <% data.forEach(el => { %>
-               <% el.Rooms.forEach(element => { %>
+            <% data.forEach((el, i) => { %>
+               <% el.Rooms.forEach((element, i) => { %>
                 <tr>
                     <th><%= element.room_type %> </th>
+                    <th><%= element.room_number %></th>
                     <th><%= element.price %> </th>
+                    <th><%= el.number_of_rooms %></th>
+                    <th><%= el.checkIn.toLocaleDateString('fr-Ca') %></th>
+                    <th><%= el.checkOut.toLocaleDateString('fr-Ca') %></th>
                 </tr> 
-               <% }) %>
+                <% }) %>
             <% }) %>
         </tbody>
     </table>

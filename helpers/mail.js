@@ -2,17 +2,17 @@ const mailer = require("nodemailer");
 
 function mail(email){
     let body ={
-        from: 'pairproject9@gmail.com',
+        from: 'abdulmujibf04@gmail.com',
         to: email,
         subject: 'Your Registered',
         html: '<h2>Terima Kasih Telah Mendaftar</h2><br>',
     }
     
-    const transporter =   mailer.createTransport({
+    const transporter = mailer.createTransport({
         service: 'gmail',
         auth:{
-            user: 'pairproject9@gmail.com',
-            pass : 'pairproject123'
+            user: 'abdulmujibf04@gmail.com',
+            pass : 'jakarta04'
         }
     })
     
